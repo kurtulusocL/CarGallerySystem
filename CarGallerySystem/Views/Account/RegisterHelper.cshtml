@@ -1,0 +1,80 @@
+﻿@model CarGallerySystem.Entities.Admin.Register
+@{
+    ViewBag.Title = "Yeni Yardımcı Admin Kaydı";
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="~/img/Logo 3.png" />
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/userpage/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/Content/userpage/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/userpage/assets/libs/css/style.css">
+    <link rel="stylesheet" href="~/Content/userpage/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <form class="splash-container" name="" action="" method="post">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-1">@ViewBag.Title</h3>
+            </div>
+            @Html.ValidationSummary()
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="NameSurname" required="" placeholder="Adınız-Soyadınız" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pass1" type="text" name="Username" required="" placeholder="Kullanıcı Adınız">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="email" name="Email" required="" placeholder="Mail Adresininiz" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pass1" type="text" name="Birthdate" required="" placeholder="Doğum Tarihiniz">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pass1" type="text" name="PhoneNumber" required="" placeholder="Telefon Numaranız">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pass1" type="text" name="RespondTitle" required="" placeholder="Göreviniz">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pass1" type="password" name="Password" required="" placeholder="Şifreniz">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pass1" type="password" name="ConfirmPassword" required="" placeholder="Şifrenizi Tekrar Yazın">
+                    </div>
+                    <div class="form-group pt-2">
+                        <button class="btn btn-block btn-primary" type="submit">Kaydı Tamamla</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </form>
+</body>
+</html>

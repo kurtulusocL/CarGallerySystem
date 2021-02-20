@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CarGallerySystem.Data.Identity.ApplicationUser>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="user-avatar text-center d-block">
+                <img src="~/img/Logo 3.png" style="max-height:128px;max-width:128px;min-height:128px;min-width:128px" alt="@item.NameLastname" class="rounded-circle user-avatar-xxl">
+            </div>
+            <div class="text-center">
+                <h2 class="font-24 mb-0">@item.NameLastname</h2>
+                <p>@item.RespondTitle</p>
+            </div>
+        </div>
+        <div class="card-body border-top">
+            <h3 class="font-16">İletişim Bilgileri</h3>
+            <div class="">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>@item.Email</li>
+                    <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>@item.PhoneNumber</li>
+                </ul>
+            </div>
+        </div>        
+        <div class="card-body border-top">
+            <h3 class="font-16">Yönetici İşlemleri</h3>
+            <div class="">
+                <ul class="mb-0 list-unstyled">
+                    <li class="mb-1"><a href="~/Admin/AdminList">Yönetici Listesi</a></li>
+                    <li class="mb-1"><a href="~/Account/Register">Yönetici Kaydı</a></li>
+                    <li class="mb-1"><a href="~/Account/RegisterHelper">Yardımcı Kaydı</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-body border-top">
+            <h3 class="font-16">Diğer</h3>
+            <div>
+                <a href="" class="badge badge-light mr-1">@item.UserName</a>
+                <a href="#" class="badge badge-light mr-1">@item.Birthdate</a>  
+            </div>
+        </div>
+    </div>
+}

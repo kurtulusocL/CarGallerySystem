@@ -1,0 +1,109 @@
+﻿@model CarGallerySystem.Entities.Models.Contract
+@{
+    ViewBag.Title = "Sözleşme Bilgisini Güncelle";
+    TempData["msg"]= "Sözleşme Güncelleme Formu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/Admin/Index" class="breadcrumb-link">@Session["KullanıcıAdıSoyadı"]</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">@TempData["msg"]</h5>
+                <div class="card-body">
+                    <form id="validationform" method="post" data-parsley-validate="" novalidate="">
+                        @using (Html.BeginForm("Edit", "Contract", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h3><label class="label label-primary visible-lg-block">Kategori, Araç Marka ve Model Seçimi</label></h3>
+                            <hr />
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="input-select" class="control-label col-lg-3">Araba Kategori Listesi: *</label>
+                                    <div class="form-control col-lg-9">
+                                        @Html.DropDownListFor(i => i.CategoryId, new SelectList(ViewBag.Categories, "Id", "Name", new { @class = "form-control" }))
+                                        @Html.ValidationMessageFor(i => i.CategoryId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="input-select" class="control-label col-lg-3">Araba Marka Listesi: *</label>
+                                    <div class="col-lg-9">
+                                        @Html.DropDownListFor(i => i.CarId, new SelectList(ViewBag.Cars, "Id", "Plaka", new { @class = "form-control" }))
+                                        @Html.ValidationMessageFor(i => i.CarId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="input-select" class="control-label col-lg-3">Araba Model Listesi: *</label>
+                                    <div class="col-lg-9">
+                                        @Html.DropDownListFor(i => i.CustomerId, new SelectList(ViewBag.Models, "Id", "NameSurname", new { @class = "form-control" }))
+                                        @Html.ValidationMessageFor(i => i.CustomerId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <h3><label class="label label-primary">Sözleşme Bilgileri Bilgileri</label></h3>
+                            <hr />
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Sözleşme Başlığı</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" required="" name="Title" placeholder="Sözleşme Başlığı" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Günlük Fiyat</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" required="" name="DailyPrice" placeholder="Günlük Fiyat" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputText4" class="col-12 col-sm-3 col-form-label text-sm-right">Gün Sayısı</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input id="inputText4" type="number" name="Day" class="form-control" placeholder="Gün Sayısı">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Toplam Fiyat</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" readonly name="TotalPrice" placeholder="Toplam Fiyat" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">iade Tarihi</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="date" required="" name="ArrivingTime" placeholder="İade Tarihi" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Güncelleme Tarihi</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="date" required="" name="UpdatedDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row text-right">
+                                <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                    <button type="submit" class="btn btn-space btn-primary">Sözleşme Bilgilerini Ekle</button>
+                                    <a href="~/Contract/Index" class="btn btn-space btn-secondary">İptal Et</a>
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CarGallerySystem.Entities.Models.Contract>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="card-body">
+        <div class="review-block">
+            <p class="review-text font-italic m-0">“@item.Title” <strong>Telim Zamanı: @item.ArrivingTime.ToShortDateString()</strong></p>
+            <span class="text-dark font-weight-bold">@item.DailyPrice.ToString()</span><small class="text-mute"> @item.DailyPrice.ToString()</small>
+            <span class="text-dark font-weight-bold">@item.Car.Plaka</span>
+            <span class="text-dark font-weight-bold">@item.Customer.NameSurname</span><small class="text-mute"> @item.Category.Name</small>
+        </div>
+    </div>
+}

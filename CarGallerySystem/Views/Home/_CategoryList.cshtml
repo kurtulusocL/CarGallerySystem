@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CarGallerySystem.Entities.Models.Category>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="media influencer-profile-data d-flex align-items-center p-2">
+                        <div class="media-body ">
+                            <div class="influencer-profile-data">
+                                <h3 class="m-b-10">@item.Name</h3>
+                                <p>
+                                    <span class="m-r-20 d-inline-block">
+                                        Kayıt Tarihi
+                                        <span class="m-l-10 text-primary">@item.CreatedDate.ToShortDateString()</span>
+                                    </span>
+                                    <span class="m-r-20 d-inline-block">
+                                        Güncellenme Tarihi <span class="m-l-10  text-info">
+                                            @if (item.UpdatedDate != null)
+                                            {
+                                                @item.UpdatedDate.Value.ToShortDateString()
+                                            }
+                                            else
+                                            {
+                                                <span>Güncelleme Yok</span>
+                                            }
+                                        </span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-top card-footer p-0">
+            <div class="campaign-metrics d-xl-inline-block">
+                <h4 class="mb-0">@item.Cars.Count()</h4>
+                <p>Kayıtlı Araba Sayısı</p>
+            </div>
+            <div class="campaign-metrics d-xl-inline-block">
+                <h4 class="mb-0">
+                    @if (item.Contracts.Count() >= 0)
+                    {
+                        @item.Contracts.Count()
+                    }
+                </h4>
+                <p>Yapılan Sözleşme Sayısı</p>
+            </div>
+        </div>
+    </div>
+}

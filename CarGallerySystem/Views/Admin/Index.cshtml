@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "ocL Araba Galerisi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="influence-profile">
+    <div class="container-fluid dashboard-content ">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h3 class="mb-2">@ViewBag.Title</h3>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="~/Admin/Index" class="breadcrumb-link">Yönetici Paneli</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Kısa Kısa İstatistikler</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+                @Html.Action("UserInformation", "Home")
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
+                <div class="influence-profile-content pills-regular">
+                    <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab" aria-controls="pills-campaign" aria-selected="true">Genel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages" aria-selected="false">Kategori</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-cat-tab" data-toggle="pill" href="#pills-cat" role="tab" aria-controls="pills-cat" aria-selected="false">Marka</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-mod-tab" data-toggle="pill" href="#pills-mod" role="tab" aria-controls="pills-mod" aria-selected="false">Model</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="false">Sözleşme</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
+                            <div class="section-block">
+                                <h3 class="section-title">Eklenen Araçlar</h3>
+                            </div>
+                            @Html.Action("CarList", "Home")
+                        </div>
+                        <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-packages-tab">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="section-block" id="cardaction">
+                                        <h3 class="section-title">Kategori İstatistikleri</h3>
+                                    </div>
+                                </div>
+                                @Html.Action("CategoryList", "Home")
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-cat" role="tabpanel" aria-labelledby="pills-cat-tab">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="section-block" id="cardaction">
+                                        <h3 class="section-title">Marka İstatistikleri</h3>
+                                    </div>
+                                </div>
+                                @Html.Action("BrandList", "Home")
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-mod" role="tabpanel" aria-labelledby="pills-mod-tab">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="section-block" id="cardaction">
+                                        <h3 class="section-title">Araç Modeli İstatistikleri</h3>
+                                    </div>
+                                </div>
+                                @Html.Action("ModelList", "Home")
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                            <div class="card">
+                                <h5 class="card-header">Sözleşmeler</h5>
+                                @Html.Action("ContractList", "Home")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

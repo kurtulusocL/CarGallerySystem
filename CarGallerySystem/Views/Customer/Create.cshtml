@@ -1,0 +1,115 @@
+﻿@model CarGallerySystem.Entities.Models.Customer
+@{
+    ViewBag.Title = "Yeni Müşteri Ekle";
+    TempData["msg"] = "Yeni Müşteri Ekleme Formu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/Admin/Index" class="breadcrumb-link">@Session["KullanıcıAdıSoyadı"]</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">@TempData["msg"]</h5>
+                <div class="card-body">
+                    <form id="validationform" method="post" data-parsley-validate="" novalidate="" enctype="multipart/form-data">
+                        @using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h3><label class="label label-primary visible-lg-block">Araç Marka Ve Model Seçimi</label></h3>
+                            <hr />
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="input-select" class="control-label col-lg-3">Araba Plaka Listesi: *</label>
+                                    <div class="form-control col-lg-9">
+                                        @Html.DropDownListFor(i => i.CarId, new SelectList(ViewBag.Cars, "Id", "Plaka", new { @class = "form-control" }))
+                                        @Html.ValidationMessageFor(i => i.CarId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="input-select" class="control-label col-lg-3">Araba Marka Listesi: *</label>
+                                    <div class="col-lg-9">
+                                        @Html.DropDownListFor(i => i.BrandId, new SelectList(ViewBag.Brands, "Id", "Name", new { @class = "form-control" }))
+                                        @Html.ValidationMessageFor(i => i.BrandId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="input-select" class="control-label col-lg-3">Araba Model Listesi: *</label>
+                                    <div class="col-lg-9">
+                                        @Html.DropDownListFor(i => i.ModelId, new SelectList(ViewBag.Models, "Id", "Name", new { @class = "form-control" }))
+                                        @Html.ValidationMessageFor(i => i.ModelId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <h3><label class="label label-primary">Müşteri Bilgileri</label></h3>
+                            <hr />
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Kimlik Numarası</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" required="" name="IdentityNo" placeholder="Kimlik Numarası" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Adı-Soyadı</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" required="" name="NameSurname" placeholder="Adı-Soyadı" class="form-control">
+                                </div>
+                            </div>                           
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Telefon Numarası</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" required="" name="PhoneNumber" placeholder="Telefon Numarası" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Mail Adresi</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="email" required="" name="MailAddress" placeholder="Mail Adresi" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Doğum Tarihi</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="date" required="" name="Birthdate" placeholder="Doğum Tarihi" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Müşteri Resmi</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="file" required="" name="image" class="btn btn-danger">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Müşteri Adresi</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <textarea required="" name="Address" placeholder="Müşteri Adresi" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row text-right">
+                                <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                    <button type="submit" class="btn btn-space btn-primary">Müşteri Bilgilerini Ekle</button>
+                                    <a href="~/Customer/Index" class="btn btn-space btn-secondary">İptal Et</a>
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

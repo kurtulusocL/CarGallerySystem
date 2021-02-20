@@ -1,0 +1,59 @@
+﻿@model CarGallerySystem.Entities.Models.Model
+@{
+    ViewBag.Title = "Yeni Araç Modeli Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/Admin/Index" class="breadcrumb-link">@Session["KullanıcıAdıSoyadı"]</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">@ViewBag.Title</h5>
+                <div class="card-body">
+                    <form id="validationform" method="post" data-parsley-validate="" novalidate="">
+                        @using (Html.BeginForm("Create", "Model", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="input-select" class="control-label col-lg-3">Araba Plaka Listesi: *</label>
+                                    <div class="form-control col-lg-9">
+                                        @Html.DropDownListFor(i => i.BrandId, new SelectList(ViewBag.Brands, "Id", "Name", new { @class = "form-control" }))
+                                        @Html.ValidationMessageFor(i => i.BrandId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Model Adı</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" required="" name="Name" placeholder="Model Adı" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row text-right">
+                                <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                    <button type="submit" class="btn btn-space btn-primary">Araba Modelini Ekle</button>
+                                    <a href="~/Model/Index" class="btn btn-space btn-secondary">İptal Et</a>
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
